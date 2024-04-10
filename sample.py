@@ -1,22 +1,33 @@
-# Python program to demonstrate
-# selenium
-
-# import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
 
-# create webdriver object
+# Replace these with your GitHub credentials
+email = "your_email@example.com"
+password = "your_password"
+
+# Start a new Chrome session
 driver = webdriver.Chrome()
 
-# enter keyword to search
-keyword = "geeksforgeeks"
+# Open GitHub login page
+driver.get("")
+time.sleep(10)
+# Find the email field and enter email
+email_field = driver.find_element(By.ID, "input-4")
+email_field.send_keys(email)
 
-# get geeksforgeeks.org
-driver.get("https://www.geeksforgeeks.org/")
+# Find the password field and enter password
+password_field = driver.find_element(By.ID, "input-5")
+password_field.send_keys(password)
 
-login_form = driver.find_element(By.XPATH, "//form[1]")
-login_form.send_keys("hello world")
-login_form.click()
+# Submit the form
+password_field.send_keys(Keys.ENTER)
 
-# print complete element
-print(login_form)
+# Add a delay to ensure page fully loads (you might need to adjust this delay)
+time.sleep(5)
+
+# You are now logged in. You can add further actions here, like navigating to a specific page or performing certain tasks.
+
+# Close the browser
+driver.quit()
